@@ -26,13 +26,18 @@ public class DataListenerService {
     private final Map<String, BigDecimal> vwaps = new ConcurrentHashMap<>();
     private final Map<String, ExecutionRecords> executionRecords = new HashMap<>();
 
+    /**
+     * Start listening from feeds
+     */
     public void listen() {
         this.registerMarketDataListener();
         this.registerFairValueListener();
         provider.listen();
     }
 
-    // MarketExecutions listener
+    /**
+     * Register listener to the MarketData feed
+     */
     private void registerMarketDataListener() {
         provider.addMarketDataListener((productId, quantity, price) -> {
             if (StringUtils.isBlank(productId) || quantity <= 0 || price <= 0) {
@@ -74,7 +79,9 @@ public class DataListenerService {
         });
     }
 
-    // FairValue listener
+    /**
+     * Register listener to the FairValue feed
+     */
     private void registerFairValueListener() {
         provider.addPricingDataListener((productId, fairValue) -> {
 
@@ -92,10 +99,22 @@ public class DataListenerService {
         });
     }
 
+    /**
+     * Check if the calculated vwap is higher than fairValue received
+     * @param currentVwap : vwap previously calculated
+     * @param currentFairValue : last fair value received from the fairValue feed
+     * @return vwap > fairValue
+     */
     private boolean isVwapHigherThanFairValue(BigDecimal currentVwap, BigDecimal currentFairValue) {
         return currentVwap.compareTo(BigDecimal.ZERO) > 0 && currentVwap.compareTo(currentFairValue) > 0;
     }
 
+    /**
+     * Log vwap and fairValue
+     * @param productId : product received from MarketFeed
+     * @param currentVwap : vwap previously calculated
+     * @param currentFairValue : last fair value received from the fairValue feed
+     */
     private void logVwap(String productId, BigDecimal currentVwap, BigDecimal currentFairValue) {
         if (isTestProduct.test(productId)) {
             LOGGER.debug("VWAP (" + currentVwap + ") > FairValue (" + currentFairValue + ")");

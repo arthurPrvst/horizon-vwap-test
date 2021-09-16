@@ -1,4 +1,0 @@
-16-09-2021 10:03:01,551 [DEBUG] [pool-1-thread-10] hsoft.services.DataListenerService: VWAP (100.047619047619) > FairValue (100.0)
-16-09-2021 10:03:01,660 [DEBUG] [pool-1-thread-9] hsoft.services.DataListenerService: VWAP (101.094339622642) > FairValue (101.0)
-16-09-2021 10:03:01,679 [DEBUG] [pool-1-thread-2] hsoft.services.DataListenerService: VWAP (101.590909090909) > FairValue (101.5)
-16-09-2021 10:03:01,684 [DEBUG] [pool-1-thread-8] hsoft.services.DataListenerService: VWAP (101.590909090909) > FairValue (101.0)

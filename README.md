@@ -26,6 +26,15 @@ pc29:horizon-vwap-test arthurprovost$ tail -50f ./target/log4j/rollout/test-prod
 16-09-2021 12:37:56,315 [DEBUG] [pool-1-thread-7] hsoft.services.DataListenerService: VWAP (101.590909090909) > FairValue (101.0)
 </pre>
 
+## Dependencies
+
+- JUnit5
+- Mockito
+- Lombok
+- ApacheCommon
+
 ## Test
+
+Test using JUnit5 and Mockito.
 
 `FairValueTest`, `VwapTest`, `ExecutionsTest`, `WrongDataTest`  

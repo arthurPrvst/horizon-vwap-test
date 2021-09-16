@@ -1,22 +1,31 @@
 # VWAP test
 
-## Prerequisite 
+Has been run with JDK 11
 
-You need an internet connection to download the dependencies of this project. 
+## Set up 
 
-A JDK installed. Any JDK can be used but this project has been created and tested using Java 8. So in case of trouble one must use a JDK 8. 
+`./gradlew install` 
 
+`./gradlew build` 
 
-## Gradle
+`./gradlew test` or `./gradlew --rerun-tasks` to force re-run of up-to-date tests
 
-In this section when `gradlew` is used it means `gradlew.bat` for Windows and `./gradlew` for Unix-like OS.
+## Logging
 
-This test is a [Gradle](https://gradle.org) Java project. You must at least run the following task once `gradlew install`. It namely creates a jar into the `lib/` folder which can then be added in the classpath of your IDE.
+All logs levels are displayed in the console. 
 
-Then you can use your favorite IDE to write and/or run the program and check its output. You can also use the the following task `gradlew run`.
+DEBUG logs (for vwap > fairValue on the TEST_PRODUCT) are outputed in a rolled file in the `./target/log4j/rollout/` directory.
 
-Lastly `gradlew test` will execute automatic tests you may write
+Result in the file:
+`tail -50f ./target/log4j/rollout/test-product.log`
+<pre>
+pc29:horizon-vwap-test arthurprovost$ tail -50f ./target/log4j/rollout/test-product.log
+16-09-2021 12:37:56,203 [DEBUG] [pool-1-thread-9] hsoft.services.DataListenerService: VWAP (100.047619047619) > FairValue (100.0)
+16-09-2021 12:37:56,257 [DEBUG] [pool-1-thread-11] hsoft.services.DataListenerService: VWAP (101.094339622642) > FairValue (101.0)
+16-09-2021 12:37:56,310 [DEBUG] [pool-1-thread-11] hsoft.services.DataListenerService: VWAP (101.590909090909) > FairValue (101.5)
+16-09-2021 12:37:56,315 [DEBUG] [pool-1-thread-7] hsoft.services.DataListenerService: VWAP (101.590909090909) > FairValue (101.0)
+</pre>
 
-## .docx
+## Test
 
-Next step is to read the doc/VwapTest.docx to introduce this test and its expectation.
+`FairValueTest`, `VwapTest`, `ExecutionsTest`, `WrongDataTest`  
